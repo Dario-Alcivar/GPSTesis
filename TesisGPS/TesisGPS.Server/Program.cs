@@ -28,15 +28,4 @@ app.UseAuthorization();
 // Mapear los controladores
 app.MapControllers();
 
-// Configurar el SPA
-app.UseSpa(spa =>
-{
-    spa.Options.SourcePath = "ClientApp";
-
-    if (app.Environment.IsDevelopment())
-    {
-        spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");  // Configura el puerto de desarrollo de React
-    }
-});
-
 app.Run();

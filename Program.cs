@@ -1,33 +1,35 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Agregar servicios para la aplicación
+// Configuración de servicios
 builder.Services.AddControllersWithViews();
+builder.Services.AddSpaStaticFiles(configuration =>
+{
+    configuration.RootPath = "ClientApp/build";  // Ajusta si usas otra carpeta
+});
 
 var app = builder.Build();
 
-// Configuración para el entorno de producción
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
+    app.UseHsts(); // Forzando HSTS
 }
 
-// Configura la ruta para los archivos estáticos en React (solo en desarrollo)
-if (app.Environment.IsDevelopment())
-{
-    // Servir archivos estáticos de la app React
-    app.UseStaticFiles();
-}
-
-// Otros middleware
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseSpaStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
-
-// Mapea los controladores para el backend de .NET
 app.MapControllers();
 
-// Configuración para servir el frontend de React en desarrollo
-app.MapFallbackToFile("index.html");  // Sirve el index.html de React
+app.UseSpa(spa =>
+{
+    spa.Options.SourcePath = "ClientApp";
+
+    if (app.Environment.IsDevelopment())
+    {
+        spa.UseProxyToSpaDevelopmentServer("http://localhost:5170"); // Para Vite (ajusta el puerto si es necesario)
+    }
+});
 
 app.Run();

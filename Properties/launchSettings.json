@@ -1,53 +1,30 @@
 {
-  "profiles": {
-    "http": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:5173"
-    },
-    "https": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "https://localhost:5173"
-    },
-    "ClientApp": {
-      "commandName": "Executable",
-      "executablePath": "C:\\Program Files\\nodejs\\npm.cmd",
-      "workingDirectory": "ClientApp",
-      "launchBrowser": true,
-      "arguments": "run dev"
-    },
-    "Perfil 1": {
-      "commandName": "Project",
-      "workingDirectory": "ClientApp",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-        // "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
-      },
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:5174/"
-    },
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    }
-  },
-  "$schema": "http://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:37868",
       "sslPort": 44352
+    }
+  },
+  "profiles": {
+    "ClientApp": {
+      "commandName": "Project",
+      "workingDirectory": "ClientApp",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:5170", // Debe coincidir con el puerto en el que corre Vite
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "arguments": "run dev"
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
+      }
     }
   }
 }
